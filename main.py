@@ -17,8 +17,18 @@ def getRandomQuotes(amount):
         ToReturn["Stave"] = random.randint(1,2)
         data = data["S" + str(ToReturn["Stave"])]
 
-    for x in range(amount):
-        rand = data[random.randint(0,len(data) - 1)]
+    while len(ToReturn["Quote"]) != amount:
+        isThere = False
+        rand = data[random.randint(0, len(data) - 1)]
+
+        for quote in ToReturn["Quote"]:
+            if quote == rand["Quote"]:
+                isThere = True
+                break
+
+
+        if isThere: continue
+
         ToReturn["Quote"].append(rand["Quote"])
         ToReturn["Explaination"].append(rand["Explaination"])
     return ToReturn
